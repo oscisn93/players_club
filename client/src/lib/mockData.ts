@@ -34,5 +34,3 @@ export const mockScores = [
 ];
 
 export type Score = (typeof mockScores)[0];
-
-

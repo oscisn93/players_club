@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { gameRules as games } from "@/lib/constants";
 
 type MarketingFeature = {
   icon: LucideIcon;
@@ -41,46 +42,50 @@ const marketingFeatures: MarketingFeature[] = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-emerald-50">
+    <div className="min-h-screen bg-zinc-950 text-emerald-50">
       <main>
         <section className="py-20 text-center">
           <h1 className="mb-6 text-5xl font-bold text-emerald-400">
-            Master the Art of Card Games
+            Welcome to the Player's Club.
+            <br />Where players play.
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-300">
             Dive into a world of strategy, skill, and excitement. Play classic
             card games or discover new favorites.
           </p>
-          <Button className="rounded-full bg-emerald-500 px-6 py-3 text-lg font-bold text-zinc-900 hover:bg-emerald-600">
-            Start Playing Now
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href="/auth/signup">
+            <Button className="rounded-full bg-emerald-500 px-6 py-3 text-lg font-bold text-zinc-900 hover:bg-emerald-600">
+              Start Playing Now
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </section>
 
-        <section className="bg-zinc-800 py-16">
+        <section className="min-h-[500px] bg-[url(/player-cards.jpg)] bg-cover py-16">
           <div className="container mx-auto px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-emerald-300">
+            <div className="flex items-center justify-center">
+            <h2 className="mb-12 text-center text-3xl font-bold text-emerald-300 bg-gradient-to-b from-slate-950 to-slate-800 py-2 px-4 rounded-sm border border-zinc-400">
               Featured Games
-            </h2>
+            </h2></div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {["Poker", "Blackjack", "Bridge"].map((game, index) => (
+              {games.map((game, index) => (
                 <Card
                   key={index}
-                  className="border border-emerald-500 bg-zinc-700"
+                  className="font-semibold border border-emerald-700 bg-gradient-to-b from-black to-zinc-900"
                 >
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-2xl font-bold text-emerald-400">
-                      {game}
+                      {game.name}
                     </h3>
                     <p className="mb-4 text-slate-300">
-                      Experience the thrill of {game.toLowerCase()} with our
-                      advanced AI opponents or play with friends online.
+                      Experience the competitive thrill of {game.name.toLowerCase()} with your friends online. AI agents (single player mode) coming soon.
                     </p>
                     <Button
-                      variant="outline"
-                      className="border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-zinc-900"
+                      variant="default"
+                      className="font-bold border border-zinc-600 text-emerald-400 hover:bg-emerald-700 hover:text-white
+                      hover:border-emerald-300"
                     >
-                      Play {game}
+                      Play {game.name}
                     </Button>
                   </CardContent>
                 </Card>
@@ -107,7 +112,6 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-
         <section className="bg-emerald-600 py-16 text-zinc-900">
           <div className="container mx-auto px-4 text-center">
             <h2 className="mb-6 text-3xl font-bold">Ready to Play?</h2>
@@ -121,133 +125,6 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-
-      <footer className="bg-zinc-800 py-12 text-slate-300">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-            <div>
-              <h3 className="mb-4 text-lg font-bold text-emerald-400">
-                CardMaster
-              </h3>
-              <p className="text-sm">
-                The ultimate destination for card game enthusiasts.
-              </p>
-            </div>
-            <div>
-              <h4 className="mb-4 text-lg font-bold text-emerald-400">
-                Quick Links
-              </h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Games
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Leaderboard
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    FAQ
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="mb-4 text-lg font-bold text-emerald-400">Legal</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Cookie Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="mb-4 text-lg font-bold text-emerald-400">
-                Connect
-              </h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Twitter
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Facebook
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Instagram
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="transition-colors hover:text-emerald-400"
-                  >
-                    Discord
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-zinc-700 pt-8 text-center">
-            <p>
-              &copy; {new Date().getFullYear()} CardMaster. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

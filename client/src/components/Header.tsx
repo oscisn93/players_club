@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Spade } from "lucide-react";
+import { MenuIcon, Spade } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import type { User } from "@/lib/mockData";
@@ -21,15 +21,15 @@ export default function Header() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
     { name: "Rules", href: "/rules" },
     { name: "Scores", href: "/scores" },
-    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/about" },
+    { name: "About", href: "/about" }
   ];
 
   const authenticatedNavItems = [
     { name: "Play", href: "/matchmaking" },
-    { name: "Profile", href: "/profile" },
+    { name: "Profile", href: "/profile" }
   ];
 
   const handleLogout = () => {
@@ -38,15 +38,15 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b border-zinc-800">
-      <div className="container mx-auto flex items-center justify-between px-4 py-6">
+    <header className="border-b border-zinc-600 flex justify-evenly">
+      <div className="container flex items-center justify-between px-2 py-3">
         <div className="flex items-center space-x-2">
-          <Spade className="h-8 w-8 text-emerald-400" />
-          <span className="text-2xl font-bold text-emerald-400">
+          <Spade className="h-6 w-6 text-emerald-400" />
+          <span className="text-xl font-bold text-emerald-400">
             CardMaster
           </span>
         </div>
-        <nav>
+        <nav className="sm:hidden">
           <ul className="flex space-x-6">
             {navItems.map((item) => (
               <li key={item.name}>
@@ -75,7 +75,7 @@ export default function Header() {
               ))}
           </ul>
         </nav>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 xs:hidden lg:contents">
           {user ? (
             <>
               <span className="text-emerald-200">Welcome, {user.username}</span>
@@ -92,19 +92,25 @@ export default function Header() {
               <Link href="/login">
                 <Button
                   variant="outline"
-                  className="border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-zinc-900"
+                  className="border-slate-800 text-slate-100 bg-emerald-500 font-bold hover:font-extrabold hover:bg-emerald-200 hover:text-zinc-900"
                 >
-                  Log In
+                  Sign In
                 </Button>
               </Link>
               <Link href="/signup">
-                <Button className="bg-emerald-500 text-zinc-900 hover:bg-emerald-600">
+                <Button
+                  variant="outline"
+                  className="border-slate-800 text-slate-100 bg-emerald-500 font-bold hover:font-extrabold hover:bg-emerald-200 hover:text-zinc-900"
+                >
                   Sign Up
                 </Button>
               </Link>
             </>
           )}
         </div>
+        <button className="md:hidden">
+          <MenuIcon className="w-8 h-8 text-emerald-400" />
+        </button>
       </div>
     </header>
   );

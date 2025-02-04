@@ -1,4 +1,12 @@
-import { Rank, Suit } from "@/lib/types";
+import { Rank, Suit } from "./types";
+
+export const THEME_COLORS = {
+  EMERALD: "#006045",
+  EMERALD_LIGHT: "#00d492",
+  SLATE_WHITE: "#f8fafc",
+  DARK_ZINC: "#27272a",
+  RED: "#a10000",
+};
 
 // Configurations values for the card suits
 // standard suit counts
@@ -266,3 +274,42 @@ export const games = {
     leaderboard: [],
   },
 };
+
+export const gameRules = [
+  {
+    name: "Poker",
+    rules: [
+      "The game is played with a standard 52-card deck.",
+      "Players are dealt two cards face down (hole cards).",
+      "Five community cards are dealt face up in the middle of the table.",
+      "Players make the best five-card hand using any combination of their hole cards and the community cards.",
+      "Betting rounds occur after the hole cards are dealt, after the first three community cards (the flop), after the fourth community card (the turn), and after the fifth community card (the river).",
+      "The player with the best hand at showdown wins the pot.",
+    ],
+  },
+  {
+    name: "Blackjack",
+    rules: [
+      "The goal is to beat the dealer's hand without going over 21.",
+      "Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.",
+      "Each player starts with two cards, one of the dealer's cards is hidden until the end.",
+      "To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.",
+      "If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.",
+      "Dealer will hit until their cards total 17 or higher.",
+    ],
+  },
+  {
+    name: "Telefunken",
+    rules: [
+      "There are seven rounds, or deals, in this game.",
+      "Played with 2-4 players in a free for all setting.",
+      "Uses two 52-card decks along with two sets of Jokers.",
+      "The game consists of two phases: drawing and discarding.",
+      "During the drawing phase, the player selects a card either from the deck or from the top of the discard pile.",
+      "During the discard phase, a player can lay down any melds in their hand or contribute cards to any meld on the board, if they have completed the current round's contract.",
+      "If a player has not met the round's contract, they must either lay down a qualifying meld. Once a player can not lay down any melds or discard any cards on to a meld pile, they may discard one card to the discard pile.",
+      "At the end of each round players receive points conmensurate with the point value of the cards in their hand.",
+      "Each round has an increasingly difficult contract. After seven rounds the player with the least penalty points wins.",
+    ],
+  },
+];
