@@ -47,7 +47,8 @@ export default function LandingPage() {
         <section className="py-20 text-center">
           <h1 className="mb-6 text-5xl font-bold text-emerald-400">
             Welcome to the Player's Club.
-            <br />Where players play.
+            <br />
+            Where players play.
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-300">
             Dive into a world of strategy, skill, and excitement. Play classic
@@ -64,26 +65,28 @@ export default function LandingPage() {
         <section className="min-h-[500px] bg-[url(/player-cards.jpg)] bg-cover py-16">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center">
-            <h2 className="mb-12 text-center text-3xl font-bold text-emerald-300 bg-gradient-to-b from-slate-950 to-slate-800 py-2 px-4 rounded-sm border border-zinc-400">
-              Featured Games
-            </h2></div>
+              <h2 className="mb-12 rounded-sm border border-zinc-400 bg-gradient-to-b from-slate-950 to-slate-800 px-4 py-2 text-center text-3xl font-bold text-emerald-300">
+                Featured Games
+              </h2>
+            </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {games.map((game, index) => (
                 <Card
                   key={index}
-                  className="font-semibold border border-emerald-700 bg-gradient-to-b from-black to-zinc-900"
+                  className="border border-emerald-700 bg-gradient-to-b from-black to-zinc-900 font-semibold"
                 >
                   <CardContent className="p-6">
                     <h3 className="mb-4 text-2xl font-bold text-emerald-400">
                       {game.name}
                     </h3>
                     <p className="mb-4 text-slate-300">
-                      Experience the competitive thrill of {game.name.toLowerCase()} with your friends online. AI agents (single player mode) coming soon.
+                      Experience the competitive thrill of{" "}
+                      {game.name.toLowerCase()} with your friends online. AI
+                      agents (single player mode) coming soon.
                     </p>
                     <Button
                       variant="default"
-                      className="font-bold border border-zinc-600 text-emerald-400 hover:bg-emerald-700 hover:text-white
-                      hover:border-emerald-300"
+                      className="border border-zinc-600 font-bold text-emerald-400 hover:border-emerald-300 hover:bg-emerald-700 hover:text-white"
                     >
                       Play {game.name}
                     </Button>

@@ -9,6 +9,14 @@ export const env = createEnv({
   server: {
     TURSO_DATABASE_URL: z.string().url().nonempty(),
     TURSO_AUTH_TOKEN: z.string().nonempty(),
+    UPSTASH_REDIS_URL: z.string().url().nonempty(),
+    UPSTASH_AUTH_TOKEN: z.string().nonempty(),
+    BETTER_AUTH_SECRET: z.string().nonempty(),
+    BETTER_AUTH_URL: z.string().url().nonempty(),
+    GITHUB_CLIENT_ID: z.string().nonempty(),
+    GITHUB_CLIENT_SECRET: z.string().nonempty(),
+    // DISCORD_CLIENT_ID: z.string().nonempty(),
+    // DISCORD_CLIENT_SECRET: z.string().nonempty(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -30,6 +38,14 @@ export const env = createEnv({
   runtimeEnv: {
     TURSO_DATABASE_URL: process.env.TURSO_DATABASE_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
+    UPSTASH_REDIS_URL: process.env.UPSTASH_REDIS_URL,
+    UPSTASH_AUTH_TOKEN: process.env.UPSTASH_AUTH_TOKEN,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    // DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    // DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },

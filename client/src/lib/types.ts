@@ -1,3 +1,13 @@
+export type WithArbitraryProps<T> = T & Record<string, string>;
+
+export type GenericPlayerState = {
+  cards: Card[];
+  points: number;
+  status: string;
+};
+
+
+
 export interface CardAPI {
   code: string;
   image: string;

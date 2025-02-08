@@ -1,13 +1,5 @@
 import { Rank, Suit } from "./types";
 
-export const THEME_COLORS = {
-  EMERALD: "#006045",
-  EMERALD_LIGHT: "#00d492",
-  SLATE_WHITE: "#f8fafc",
-  DARK_ZINC: "#27272a",
-  RED: "#a10000",
-};
-
 // Configurations values for the card suits
 // standard suit counts
 const STANDARD_SUIT_COUNT = 13;

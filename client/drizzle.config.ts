@@ -3,11 +3,10 @@ import { type Config } from "drizzle-kit";
 import { env } from "@/env";
 
 export default {
-  schema: "./src/server/db/schema.ts",
+  schema: "./src/server/db/schema/*",
   dialect: "sqlite",
   dbCredentials: {
     url: env.TURSO_DATABASE_URL,
-    authToken: env.TURSO_AUTH_TOKEN
+    authToken: env.TURSO_AUTH_TOKEN,
   },
-  tablesFilter: ["players_club_*"],
 } satisfies Config;

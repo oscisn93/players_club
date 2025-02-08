@@ -24,12 +24,12 @@ export default function Header() {
     { name: "Rules", href: "/rules" },
     { name: "Scores", href: "/scores" },
     { name: "About", href: "/about" },
-    { name: "About", href: "/about" }
+    { name: "About", href: "/about" },
   ];
 
   const authenticatedNavItems = [
     { name: "Play", href: "/matchmaking" },
-    { name: "Profile", href: "/profile" }
+    { name: "Profile", href: "/profile" },
   ];
 
   const handleLogout = () => {
@@ -38,13 +38,11 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b border-zinc-600 flex justify-evenly">
+    <header className="flex justify-evenly border-b border-zinc-600">
       <div className="container flex items-center justify-between px-2 py-3">
         <div className="flex items-center space-x-2">
           <Spade className="h-6 w-6 text-emerald-400" />
-          <span className="text-xl font-bold text-emerald-400">
-            CardMaster
-          </span>
+          <span className="text-xl font-bold text-emerald-400">CardMaster</span>
         </div>
         <nav className="sm:hidden">
           <ul className="flex space-x-6">
@@ -75,7 +73,7 @@ export default function Header() {
               ))}
           </ul>
         </nav>
-        <div className="flex space-x-4 xs:hidden lg:contents">
+        <div className="xs:hidden flex space-x-4 lg:contents">
           {user ? (
             <>
               <span className="text-emerald-200">Welcome, {user.username}</span>
@@ -92,7 +90,7 @@ export default function Header() {
               <Link href="/login">
                 <Button
                   variant="outline"
-                  className="border-slate-800 text-slate-100 bg-emerald-500 font-bold hover:font-extrabold hover:bg-emerald-200 hover:text-zinc-900"
+                  className="border-slate-800 bg-emerald-500 font-bold text-slate-100 hover:bg-emerald-200 hover:font-extrabold hover:text-zinc-900"
                 >
                   Sign In
                 </Button>
@@ -100,7 +98,7 @@ export default function Header() {
               <Link href="/signup">
                 <Button
                   variant="outline"
-                  className="border-slate-800 text-slate-100 bg-emerald-500 font-bold hover:font-extrabold hover:bg-emerald-200 hover:text-zinc-900"
+                  className="border-slate-800 bg-emerald-500 font-bold text-slate-100 hover:bg-emerald-200 hover:font-extrabold hover:text-zinc-900"
                 >
                   Sign Up
                 </Button>
@@ -109,7 +107,7 @@ export default function Header() {
           )}
         </div>
         <button className="md:hidden">
-          <MenuIcon className="w-8 h-8 text-emerald-400" />
+          <MenuIcon className="h-8 w-8 text-emerald-400" />
         </button>
       </div>
     </header>
