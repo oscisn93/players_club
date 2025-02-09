@@ -20,11 +20,6 @@ export const auth = betterAuth({
       clientId: "GITHUB_CLIENT_ID",
       clientSecret: "GITHUB_CLIENT_SECRET",
     },
-    // // temporarily disable for testing
-    // discord: {
-    //   clientId: "DISCORD_CLIENT_ID",
-    //   clientSecret: "DISCORD_CLIENT_SECRET",
-    // },
   },
   plugins: [
     nextCookies(),

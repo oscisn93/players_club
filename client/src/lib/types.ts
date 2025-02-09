@@ -6,8 +6,6 @@ export type GenericPlayerState = {
   status: string;
 };
 
-
-
 export interface CardAPI {
   code: string;
   image: string;
@@ -50,6 +48,7 @@ export type Card = {
   suit: Suit;
   rank: Rank;
 };
+
 export type Meld = {
   pile: Card[];
   hasJoker: boolean;

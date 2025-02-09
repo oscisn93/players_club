@@ -26,6 +26,7 @@ CREATE TABLE `user` (
 	`is_anonymous` integer
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);--> statement-breakpoint
 CREATE TABLE `verification` (
 	`id` text PRIMARY KEY NOT NULL,
 	`identifier` text NOT NULL,
@@ -77,5 +78,3 @@ CREATE TABLE `player` (
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE cascade ON DELETE cascade,
 	FOREIGN KEY (`game_id`) REFERENCES `game`(`id`) ON UPDATE cascade ON DELETE set null
 );
---> statement-breakpoint
-CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);

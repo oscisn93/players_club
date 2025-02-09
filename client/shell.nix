@@ -5,9 +5,11 @@ pkgs.mkShell {
     nodePackages.pnpm
     sqlite
     turso-cli
+    # redis
   ];
   shellHook = ''
     alias sqlite=sqlite3
+    # (&>/dev/null redis-server &)
   '';
 }
 

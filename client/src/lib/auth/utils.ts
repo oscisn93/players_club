@@ -65,18 +65,9 @@ export async function signInWithEmailAndPassword(
   else console.log(data)
 }
 
-// export async function signInWithDiscord() {
-//   const response = await signIn.social({
-//     provider: "discord",
-//   });
-//   console.log(response);
-// }
-
-export async function signInWithGitHub(callbackURL: string = "/") {
+export async function signInWithGitHub() {
   const { data, error } = await signIn.social({
     provider: "github",
-    callbackURL,
-    newUserCallbackURL: "/profile"
   });
   if (error) {
     console.error(error);
