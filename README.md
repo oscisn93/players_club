@@ -160,10 +160,10 @@ type PlayerCard = {
     
 ## Current Roadmap
 
-- [ ] Implement Authentication
+- [x] Implement Authentication
     - [x] Integrate BetterAuth
     - [x] Configure/Enhance BetterAuth
-    - [ ] Implement Auth UI elements/pages
+    - [x] Implement Auth UI elements/pages
 
 - [ ] Implement Data Layer
     - [x] Create sql tables, verify constraints and push schema to database(s)

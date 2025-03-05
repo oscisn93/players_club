@@ -1,6 +1,6 @@
 # Players Club Client App
 
-This is the client application. It will host the main website as well as the game. 
+This is the client application. It will host the main website as well as the game.
 The plan is to create the games in the following order:
 
 1. [Telefunken](https://www.coololdgames.com/card-games/rummy/contract/telefunken)\*
@@ -31,7 +31,7 @@ You will then need to create a few environment variables. The following checklis
 
 ...well almost! There's one more step!
 
-You must push your database schema so that the necessary tables are available on your Turso database. To accomplish this, the T3 template gives us a helpful npm script 
+You must push your database schema so that the necessary tables are available on your Turso database. To accomplish this, the T3 template gives us a helpful npm script
 
 ```bash
 pnpm db:push
@@ -39,7 +39,7 @@ pnpm db:push
 
 This ensures that your database has all the same tables as the database from the previous commit.
 
-However, let's say you later make changes to the auth instance, such as adding a plugin. This may require us to alter the auth tables, and you will first need to regenerate the auth schema file using the better-auth cli generate script: 
+However, let's say you later make changes to the auth instance, such as adding a plugin. This may require us to alter the auth tables, and you will first need to regenerate the auth schema file using the better-auth cli generate script:
 
 ```bash
 pnpm dlx @better-auth/cli generate
@@ -49,10 +49,9 @@ This will generate a drizzle schema that matches the tables expected by the bett
 
 ```bash
 pnpm db:generate
-``` 
+```
 
 script to create a migration, followed by
-
 
 ```bash
 pnpm db:migrate
@@ -73,4 +72,3 @@ TODO: Create more resource agnostic development environment with local redis and
 ## Notes
 
 \*Telefunken is a Rummy-like card game popular in South America. The goal, like in most Rummy games, is to be the first to empty the cards from your hand by forming sets and sequences in accordance with the current contract. When a player wins a round or deal the remaining players get penalty points equivalent to the total value of the cards in their hand. At the end of 7 deals, the player with theleast penalty points wins!
-

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import Image from "next/image";
 import { Loader2, X } from "lucide-react";
-import { signUp } from "@/lib/auth/client";
+import { signInAnonymously, signUp } from "@/lib/auth/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -42,40 +43,40 @@ export function SignUp() {
   };
 
   return (
-    <Card className="z-50 max-w-md rounded-md rounded-t-none">
+    <Card className="mx-auto max-w-md rounded-lg border border-emerald-600 bg-gradient-to-br from-slate-900 from-5% via-slate-950 via-40% to-zinc-950 to-90% px-6 pt-2 text-emerald-400">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
+        <CardTitle className="mb-6 text-center text-3xl font-bold text-emerald-400">
+          Sign Up
+        </CardTitle>
         <CardDescription className="text-xs md:text-sm">
           Enter your information to create an account
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="first-name">First name</Label>
-              <Input
-                id="first-name"
-                placeholder="Max"
-                required
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-                value={firstName}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="last-name">Last name</Label>
-              <Input
-                id="last-name"
-                placeholder="Robinson"
-                required
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-                value={lastName}
-              />
-            </div>
+          <div className="grid gap-2">
+            <Label htmlFor="first-name">First name</Label>
+            <Input
+              id="first-name"
+              placeholder="Max"
+              required
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
+              value={firstName}
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="last-name">Last name</Label>
+            <Input
+              id="last-name"
+              placeholder="Robinson"
+              required
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
+              value={lastName}
+            />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
@@ -147,15 +148,16 @@ export function SignUp() {
           </div>
           <Button
             type="submit"
-            className="w-full"
+            className="w-full border border-emerald-300 bg-emerald-500 text-zinc-950 hover:bg-slate-900 hover:font-extrabold hover:text-emerald-400"
             disabled={loading}
-            onClick={async () => {
+            onClick={async (e) => {
+              e.preventDefault();
               await signUp.email({
                 email,
                 password,
                 name: `${firstName} ${lastName}`,
                 image: image ? await convertImageToBase64(image) : "",
-                callbackURL: "/dashboard",
+                callbackURL: "/",
                 fetchOptions: {
                   onResponse: () => {
                     setLoading(false);
@@ -167,7 +169,7 @@ export function SignUp() {
                     toast.error(ctx.error.message);
                   },
                   onSuccess: async () => {
-                    router.push("/dashboard");
+                    router.push("/");
                   },
                 },
               });
@@ -179,12 +181,40 @@ export function SignUp() {
               "Create an account"
             )}
           </Button>
+          <Button
+            type="submit"
+            className="w-full border border-zinc-500 bg-zinc-200 text-zinc-950 hover:border-zinc-100 hover:bg-slate-900 hover:text-zinc-200"
+            disabled={loading}
+            onClick={async () => {
+              const user = await signInAnonymously();
+              if (!user) {
+                toast.error('Something went wrong, please try again later...')
+              } else {
+                router.push("/");
+              }
+            }}
+          >
+            {loading ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              "Login Anonymously"
+            )}
+          </Button>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-2">
+        <p className="mt-4 text-center text-sm text-slate-400">
+          Already have an account?{" "}
+          <Link href="/login" className="text-emerald-400 hover:underline">
+            Log in
+          </Link>
+        </p>
         <div className="flex w-full justify-center border-t py-4">
           <p className="text-center text-xs text-neutral-500">
-            Secured by <span className="text-orange-400">better-auth.</span>
+            Secured by{" "}
+            <span className="font-extrabold text-emerald-400">
+              better-auth.
+            </span>
           </p>
         </div>
       </CardFooter>

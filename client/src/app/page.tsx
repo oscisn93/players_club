@@ -44,18 +44,17 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-emerald-50">
       <main>
-        <section className="py-20 text-center">
+        <section className="flex min-h-[500px] flex-col items-center justify-center border-b border-emerald-900 bg-gradient-to-br from-emerald-800 from-5% via-slate-950 via-25% to-emerald-950 to-80% text-center">
           <h1 className="mb-6 text-5xl font-bold text-emerald-400">
-            Welcome to the Player's Club.
+            Welcome to PlayersClub.
             <br />
             Where players play.
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-300">
-            Dive into a world of strategy, skill, and excitement. Play classic
-            card games or discover new favorites.
+            Dive into a world of card game strategy, build up your skills, and enjoy playing your favorite classics or feel the thrill of discovering and mastering new favorites.
           </p>
-          <Link href="/auth/signup">
-            <Button className="rounded-full bg-emerald-500 px-6 py-3 text-lg font-bold text-zinc-900 hover:bg-emerald-600">
+          <Link href="/signup">
+            <Button className="rounded bg-emerald-500 px-6 py-3 text-lg font-bold text-zinc-900 hover:bg-emerald-600">
               Start Playing Now
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
@@ -100,7 +99,7 @@ export default function LandingPage() {
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
             <h2 className="mb-8 text-3xl font-bold text-emerald-300">
-              Why Choose CardMaster?
+              Why Choose PlayersClub?
             </h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
               {marketingFeatures.map((feature: MarketingFeature, index) => (
@@ -120,11 +119,14 @@ export default function LandingPage() {
             <h2 className="mb-6 text-3xl font-bold">Ready to Play?</h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl">
               Join thousands of players and start your card game journey today.
-              No downloads required!
+              No downloads required, mobile app coming soon!
             </p>
-            <Button className="rounded-full bg-zinc-900 px-6 py-3 text-lg font-bold text-emerald-400 hover:bg-zinc-800">
+            <Link 
+              href="/signup"
+              className="rounded bg-zinc-950 px-8 py-4 text-lg font-bold text-emerald-400 hover:bg-slate-900"
+            >
               Create Free Account
-            </Button>
+            </Link>
           </div>
         </section>
       </main>

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { mockScores, type Score, mockGames } from "@/lib/mockData";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -21,17 +20,6 @@ import {
 
 export default function ScoresPage() {
   const [selectedGame, setSelectedGame] = useState<string>("All");
-  const [filteredScores, setFilteredScores] = useState<Score[]>(mockScores);
-
-  useEffect(() => {
-    if (selectedGame === "All") {
-      setFilteredScores(mockScores);
-    } else {
-      setFilteredScores(
-        mockScores.filter((score) => score.game === selectedGame),
-      );
-    }
-  }, [selectedGame]);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -43,11 +31,7 @@ export default function ScoresPage() {
           </SelectTrigger>
           <SelectContent className="bg-zinc-800 text-emerald-200">
             <SelectItem value="All">All Games</SelectItem>
-            {mockGames.map((game) => (
-              <SelectItem key={game.id} value={game.name}>
-                {game.name}
-              </SelectItem>
-            ))}
+            <span>Thanks for selecting me.</span> 
           </SelectContent>
         </Select>
       </div>
@@ -62,20 +46,7 @@ export default function ScoresPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredScores.map((score, index) => (
-            <TableRow key={score.id}>
-              <TableCell className="font-medium text-emerald-200">
-                {index + 1}
-              </TableCell>
-              <TableCell className="text-emerald-200">
-                {score.username}
-              </TableCell>
-              <TableCell className="text-emerald-200">{score.game}</TableCell>
-              <TableCell className="text-right text-emerald-200">
-                {score.score}
-              </TableCell>
-            </TableRow>
-          ))}
+          some data...
         </TableBody>
       </Table>
     </div>

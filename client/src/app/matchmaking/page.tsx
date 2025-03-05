@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { mockGames, type User } from "@/lib/mockData";
 import { useRouter } from "next/navigation";
+import { User } from "better-auth";
 
 export default function MatchmakingPage() {
   const [selectedGame, setSelectedGame] = useState<number | null>(null);

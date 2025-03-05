@@ -1,6 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -14,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Loader2, Key } from "lucide-react";
-import { signIn } from "@/lib/auth/client";
+import auth from "@/lib/auth/client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -24,10 +26,14 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const router = useRouter();
+
   return (
-    <Card className="max-w-md">
+    <Card className="mx-auto max-w-md rounded-lg border border-emerald-600 bg-gradient-to-br from-slate-900 from-5% via-slate-950 via-40% to-zinc-950 to-90% px-6 pt-2 text-emerald-400">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
+        <CardTitle className="mb-6 text-center text-3xl font-bold text-emerald-400">
+          Sign In
+        </CardTitle>
         <CardDescription className="text-xs md:text-sm">
           Enter your email below to login to your account
         </CardDescription>
@@ -75,13 +81,33 @@ export default function SignIn() {
 
           <Button
             type="submit"
-            className="w-full"
+            className="w-full border border-emerald-300 bg-emerald-500 text-zinc-950 hover:bg-slate-950 hover:font-extrabold hover:text-emerald-400"
             disabled={loading}
             onClick={async () => {
-              await signIn.email({ email, password });
+              await auth.signInWithEmailAndPassword(email, password);
             }}
           >
             {loading ? <Loader2 size={16} className="animate-spin" /> : "Login"}
+          </Button>
+
+          <Button
+            type="submit"
+            className="w-full border border-zinc-500 bg-zinc-200 text-zinc-950 hover:border-zinc-100 hover:bg-slate-900 hover:text-zinc-200"
+            disabled={loading}
+            onClick={async () => {
+              const user = await auth.signInAnonymously();
+              if (!user) {
+                toast.error('Something went wrong, please try again later...')
+              } else {
+                router.push("/");
+              }
+            }}
+          >
+            {loading ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              "Login Anonymously"
+            )}
           </Button>
 
           <div
@@ -92,13 +118,8 @@ export default function SignIn() {
           >
             <Button
               variant="outline"
-              className={cn("w-full gap-2")}
-              onClick={async () => {
-                await signIn.social({
-                  provider: "github",
-                  callbackURL: "/dashboard",
-                });
-              }}
+              className={cn("w-full gap-2 bg-zinc-950")}
+              onClick={async () => await auth.signInWithGitHub()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -113,39 +134,22 @@ export default function SignIn() {
               </svg>
               Sign in with Github
             </Button>
-            <Button
-              variant="outline"
-              className={cn("w-full gap-2")}
-              onClick={async () => {
-                await signIn.social({
-                  provider: "discord",
-                  callbackURL: "/dashboard",
-                });
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.1.1 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.1 16.1 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12"
-                ></path>
-              </svg>
-              Sign in with Discord
-            </Button>
           </div>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-8">
+        <p className="mt-4 text-center text-sm text-slate-400">
+          Don't have an account?{" "}
+          <Link href="/signup" className="text-emerald-400 hover:underline">
+            Sign up
+          </Link>
+        </p>
         <div className="flex w-full justify-center border-t py-4">
           <p className="text-center text-xs text-neutral-500">
             Powered by{" "}
             <Link
               href="https://better-auth.com"
-              className="underline"
+              className="font-extrabold text-emerald-400"
               target="_blank"
             >
               <span className="dark:text-orange-200/90">better-auth.</span>

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { User } from "@/lib/mockData";
 import { useRouter } from "next/navigation";
 import type React from "react"; // Added import for React
+import { User } from "better-auth/types";
 
 export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null);
@@ -58,7 +58,7 @@ export default function ProfilePage() {
               type="text"
               id="username"
               name="username"
-              value={user.username}
+              value={user.name}
               onChange={handleChange}
               disabled={!isEditing}
               className="w-full border-zinc-600 bg-zinc-700 text-emerald-100"
@@ -81,7 +81,7 @@ export default function ProfilePage() {
               className="w-full border-zinc-600 bg-zinc-700 text-emerald-100"
             />
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          {/* <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="mb-1 block text-sm font-medium text-emerald-200">
                 Games Played
@@ -100,7 +100,7 @@ export default function ProfilePage() {
               </label>
               <p className="text-slate-300">{user.losses}</p>
             </div>
-          </div>
+          </div> */}
           {isEditing ? (
             <Button
               type="submit"

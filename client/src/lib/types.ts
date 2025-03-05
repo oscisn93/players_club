@@ -25,6 +25,7 @@ export interface DeckAPI {
 }
 
 export type Suit = "S" | "H" | "C" | "D" | "1" | "2";
+
 export type Rank =
   | "A"
   | "2"
@@ -41,37 +42,29 @@ export type Rank =
   | "K"
   | "X";
 
-export type CardCode = `${Rank}${Suit}`;
-export type Card = {
+type CardCode = `${Rank}${Suit}`;
+
+type Card = {
   code: CardCode;
   image: string;
   suit: Suit;
   rank: Rank;
 };
 
-export type Meld = {
+type Meld = {
+  ofType: Rank | Suit;
   pile: Card[];
   hasJoker: boolean;
 };
-export type Contract = {
+
+type Contract = {
   minSize: number;
   pure: boolean;
 };
-export type GameStatus = "CREATED" | "PENDING" | "ACTIVE" | "IDLE" | "ENDED";
-export interface DataStore {
-  users: User[];
-  games: Game[];
-  decks: Deck[];
-  players: Player[];
-}
-export interface User {
-  uid: string;
-  email: string;
-  username: string;
-  avatar_url: string;
-}
 
-export interface Game {
+type GameStatus = "CREATED" | "PENDING" | "READY" | "ACTIVE" | "ENDED";
+
+interface Game {
   id: string;
   status: GameStatus;
   players: string[];
@@ -84,7 +77,7 @@ export interface Game {
   created_at: number;
 }
 
-export interface Deck {
+interface Deck {
   status: string;
   cards: [string, string];
   remaining: number;
@@ -93,7 +86,7 @@ export interface Deck {
   order: any[];
 }
 
-export interface Player {
+interface Player {
   cards: any[];
   chips: number;
   scores: any[];

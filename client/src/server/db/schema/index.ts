@@ -121,8 +121,11 @@ export type Player = InferSelectModel<typeof player>;
 export const playerCard = sqliteTable("player_card", {
   playerId: text("player_id")
     .notNull()
-    .references(() => player.userId, { onDelete: 'cascade', onUpdate: 'cascade' }),
+    .references(() => player.userId, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
   cardId: text("card_id")
     .notNull()
-    .references(() => card.id)
+    .references(() => card.id),
 });
