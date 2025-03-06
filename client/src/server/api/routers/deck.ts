@@ -5,6 +5,7 @@ import {
   publicProcedure,
 } from "@/server/api/trpc";
 import { deck } from "@/server/db/schema";
+import { eq } from "drizzle-orm";
 
 export const deckRouter = createTRPCRouter({
   create: protectedProcedure
@@ -24,7 +25,10 @@ export const deckRouter = createTRPCRouter({
   updateCount: protectedProcedure
     .input(z.object({ id: z.string(), updatedCount: z.number() }))
     .mutation(async ({ ctx, input }) => {
-      await ctx.db.update(deck).set({ count: input.updatedCount });
+      await ctx.db
+        .update(deck)
+        .set({ count: input.updatedCount })
+        .where(eq(deck.id, input.id));
     }),
   getById: publicProcedure
     .input(z.object({ id: z.string() }))

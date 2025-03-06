@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import Image from "next/image";
 import { Loader2, X } from "lucide-react";
-import { signInAnonymously, signUp } from "@/lib/auth/client";
+import auth from "@/lib/auth/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -152,7 +152,7 @@ export function SignUp() {
             disabled={loading}
             onClick={async (e) => {
               e.preventDefault();
-              await signUp.email({
+              await auth.signUp.email({
                 email,
                 password,
                 name: `${firstName} ${lastName}`,
@@ -186,9 +186,9 @@ export function SignUp() {
             className="w-full border border-zinc-500 bg-zinc-200 text-zinc-950 hover:border-zinc-100 hover:bg-slate-900 hover:text-zinc-200"
             disabled={loading}
             onClick={async () => {
-              const user = await signInAnonymously();
+              const user = await auth.signInAnonymously();
               if (!user) {
-                toast.error('Something went wrong, please try again later...')
+                toast.error("Something went wrong, please try again later...");
               } else {
                 router.push("/");
               }
@@ -222,6 +222,7 @@ export function SignUp() {
   );
 }
 
+// TODO: implement image upload API
 async function convertImageToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

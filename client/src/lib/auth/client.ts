@@ -50,6 +50,7 @@ const auth = {
   signInWithGitHub,
   useSession: authClient.useSession,
   signUp: authClient.signUp,
-  signOut: authClient.signOut
+  signOut: authClient.signOut,
+  updateUser: authClient.updateUser,
 }
 export default auth;  
